@@ -1,0 +1,187 @@
+/* =========================================================
+   Lock Screen — hitung mundur menuju 8 Oktober 2026
+   ========================================================= */
+
+.lock-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.lock {
+  position: relative;
+  flex: 1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 60px 24px 30px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.lock__glow {
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255, 201, 216, .78) 0%,
+    rgba(245, 226, 184, .38) 45%,
+    transparent 70%);
+  filter: blur(30px);
+  animation: lockBreathe 9s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes lockBreathe {
+  0%, 100% { transform: scale(1);    opacity: .85; }
+  50%      { transform: scale(1.14); opacity: 1;   }
+}
+
+.lock__content { max-width: 760px; }
+
+.lock__ornament {
+  display: inline-block;
+  color: var(--gold-500);
+  font-size: 1.7rem;
+  animation: fadeUp .9s both;
+}
+
+.lock__kicker {
+  font-size: .78rem;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  color: var(--rose-600);
+  margin: 16px 0 22px;
+  font-weight: 400;
+  animation: fadeUp .9s .12s both;
+}
+
+.lock__title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 6vw, 3.4rem);
+  line-height: 1.2;
+  margin: 0 0 14px;
+  background: linear-gradient(120deg, var(--rose-700), var(--rose-600) 45%, var(--gold-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fadeUp .9s .22s both;
+}
+
+.lock__script {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4.5vw, 2.5rem);
+  color: var(--rose-600);
+  margin: 0 0 28px;
+  animation: fadeUp .9s .32s both;
+}
+
+.lock__body {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  max-width: 540px;
+  margin: 0 auto 40px;
+  animation: fadeUp .9s .42s both;
+}
+
+.lock__body strong {
+  color: var(--rose-700);
+  font-weight: 500;
+}
+
+/* ---------- Countdown ---------- */
+.lock__countdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  animation: fadeUp .9s .52s both;
+}
+
+.lock__unit {
+  min-width: 104px;
+  padding: 18px 14px 14px;
+  background: rgba(255, 255, 255, .78);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 201, 216, .85);
+  border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .4s cubic-bezier(.2,.7,.3,1);
+}
+
+.lock__unit:hover { transform: translateY(-4px); }
+
+.lock__num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+  font-weight: 600;
+  color: var(--rose-600);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.lock__label {
+  display: block;
+  margin-top: 5px;
+  font-size: .66rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.lock__target {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--gold-600);
+  margin: 0 0 34px;
+  animation: fadeUp .9s .62s both;
+}
+
+.lock__sign {
+  font-size: .74rem;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0;
+  animation: fadeUp .9s .72s both;
+}
+
+.lock__footer {
+  text-align: center;
+  padding: 18px 24px 30px;
+  font-size: .72rem;
+  letter-spacing: .14em;
+  color: var(--ink-mute);
+}
+
+.lock__footer p { margin: 0; }
+
+/* ---------- Pesan khusus saat terblokir ---------- */
+.lock__notice {
+  max-width: 520px;
+  margin: 0 auto 32px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .7);
+  border: 1px solid var(--gold-300);
+  font-size: .9rem;
+  color: var(--ink-soft);
+}
+
+.lock__notice strong { color: var(--rose-700); }
+
+/* ---------- Responsif ---------- */
+@media (max-width: 560px) {
+  .lock__countdown { gap: 8px; }
+  .lock__unit { min-width: 76px; padding: 13px 9px 10px; }
+  .lock__body { font-size: .94rem; margin-bottom: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lock__glow { animation: none; }
+}
